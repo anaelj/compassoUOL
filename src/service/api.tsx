@@ -3,7 +3,7 @@ import axios from 'axios';
 const api = axios.create({
   baseURL: 'https://api.github.com',
   headers: {
-//    Authorization: `Basic ${process.env.TOKEN}`,
+    Authorization: `Basic ${process.env.TOKEN}`,
     common: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -11,14 +11,13 @@ const api = axios.create({
   },
 });
 
-
  export async function getUsersPartial(username : String)  {
     return await api.get('/search/users',
     {
         params: {
           // eslint-disable-next-line prefer-template
           q: username + 'in:user',
-          per_page: 10,
+          per_page: 18,
           sort: 'followers',
         }
     }
@@ -39,9 +38,18 @@ export async function getUserRepos(username : String) {
     });
 };
 
+export async function getUserFollowers(username : String) {
+    return await api({
+      url: `/users/${username}/followers`,
+      method: 'get',
+    });
+};
+
 export function getUserStarred(username: String) {
     return api({
       url: `/users/${username}/starred`,
       method: 'get',
     });
 };
+
+export default api;
