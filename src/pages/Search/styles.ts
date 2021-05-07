@@ -41,7 +41,6 @@ export const Lista = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
     text-align: center;
 
     cursor: pointer;
@@ -77,10 +76,6 @@ export const Lista = styled.div`
     color: #fff;
   }
 
-  .items-grid li.selected {
-    background: #e1faec;
-    border: 2px solid #34cb79;
-  }
   .items-grid {
     margin-left: 0px;
     display: grid;
@@ -116,16 +111,9 @@ export const Lista = styled.div`
   }
 
   .items-grid li span {
-    flex: 1;
     margin-top: 12px;
-
     display: flex;
     align-items: center;
-    color: var(--title-color);
   }
 
-  .items-grid li.selected {
-    background: #e1faec;
-    border: 2px solid #34cb79;
-  }
 `;

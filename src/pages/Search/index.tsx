@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import  { getUsersPartial, getUserRepos, getUserFollowers } from '../../service/api';
+import  { getUsersPartial, getUser } from '../../service/api';
 import Input from '../../components/Input/index';
 import Button from '../../components/Button';
 import { Container, Lista } from './styles';
@@ -41,23 +41,14 @@ const SearchUser: React.FC = () => {
 
   useEffect(() => {
     dataApiGitHub.map(item => { return (
-        getUserRepos(item.login)
+        getUser(item.login)
             .then( res => {
-              const newTotal = {id: item.id, followersCount: 5, repositoriesCount: res.data.length};
+              const newTotal = {id: item.id, followersCount: res.data.followers , repositoriesCount: res.data.public_repos};
               dataTotals.push(newTotal);
-
-              getUserFollowers(item.login)
-                .then( res => {
-                  newTotal.followersCount = res.data.length;
-                  dataTotals.push(newTotal);
-                  setDataTotals([...dataTotals])
-              })
-           })
+              setDataTotals([...dataTotals])
+        })
     )})
-
-
-
-  }, [dataApiGitHub]);
+  }, [dataApiGitHub]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
    <>
@@ -71,8 +62,7 @@ const SearchUser: React.FC = () => {
               value={textoPesquisa}
               onChange={(e) => setTextoPesquisa(e.target.value) }
             />
-
-            <Button onClick={getUsers}>Search</Button>
+            <Button onClick={getUsers} loading={loading}>Search</Button>
         </Container>
 
        { loading && <div style={{display:"flex", width:'100%',justifyContent: "center"}}><ReactLoading type={'bubbles'} color={'#000000'} height={'5%'} width={'5%'}/></div> }

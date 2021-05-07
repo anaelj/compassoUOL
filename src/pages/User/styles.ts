@@ -22,7 +22,7 @@ export const Perfil = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 8%;
 
   img {
       margin-top: 20px;
@@ -63,5 +63,36 @@ export const PerfilDetail = styled.div`
 
 `;
 
+export const List = styled.div`
+
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 50px;
+  width: 96%;
+  height: 100%;
+  margin: 16px;
+  padding: 16px;
+  position: fixed;
+
+  background-color: #312e38;
+
+  .classRepositories {
+    width: 40%;
+    position: relative;
+    border: 2px solid #03b0ef;
+    margin-bottom: 10px;
+    /* margin-top: 60px; */
+  }
+  .classStarred {
+    width: 40%;
+    position: relative;
+    border: 2px solid #03b0ef;
+    margin-bottom: 10px;
+    /* margin-top: 60px; */
+  }
+
+
+`;
 
 

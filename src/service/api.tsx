@@ -5,7 +5,7 @@ const api = axios.create({
   headers: {
     Authorization: `Basic ${process.env.TOKEN}`,
     common: {
-      Accept: 'application/json',
+      Accept: 'application/vnd.github.v3+json',
       'Content-Type': 'application/json',
     },
   },
@@ -24,8 +24,8 @@ const api = axios.create({
     );
 }
 
-  export function getUser(username: String) {
-    return api({
+  export async function getUser(username: String) {
+    return await api({
       url: `/users/${username}`,
       method: 'get',
     });
