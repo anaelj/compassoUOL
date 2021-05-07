@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
 import { getUser } from 'src/service/api';
-import { Container, Perfil, PerfilDetail, List } from './styles';
-import { format } from "date-fns";
+import { Container, Perfil, PerfilDetail, List, Buttons } from './styles';
 import { FiStar, FiBox, FiList } from 'react-icons/fi';
 import Button from 'src/components/Button';
+import Respositories from '../Repositories';
+import Starreds from '../Starreds';
+import {handleFormatDate} from 'src/Tools/tools.date';
 
 interface IParams {
   userLoginName : string;
@@ -25,6 +27,9 @@ interface IUser {
 const User: React.FC = () => {
   const {userLoginName} = useParams<IParams>();
   const [userData, setUserData] = useState<IUser>();
+  const [repositories, setRepositories] = useState(false);
+  const [starred, setStarred] = useState(false);
+
   // const jsonTeste = new Object({
   //           avatar_url : 'avatarurl',
   //           created_at: '2020-12-02',
@@ -38,21 +43,16 @@ const User: React.FC = () => {
   //        }) as IUser;
 
 
-  const handleFormatDate = (pDate : string) =>{
-    const date = new Date(pDate);
-    return format(date, "dd/MM/yyyy H:mm");
-  }
-
   useEffect(() => {
       getUser(userLoginName).then( res => {
           setUserData(res.data);
       });
-//      setUserData(jsonTeste);
   }, [userLoginName]);
 
-  useEffect(() => {
-      console.log(userData);
-  }, [userData]);
+
+  // useEffect(() => {
+  //     console.log(userData);
+  // }, [userData]);
 
   return (
     <>
@@ -80,22 +80,14 @@ const User: React.FC = () => {
         </div>
       </PerfilDetail>
     </Container>
+      <Buttons>
+          <Button style={{height:'60px'}} onClick={ ()=> setRepositories(!repositories)}><FiBox/>Repositories</Button>
+          <Button style={{height:'60px'}} onClick={ ()=> {setStarred(!starred)}}><FiList/>Starred</Button>
+      </Buttons>
       <List>
-        <div style={{display:"flex", flexDirection:"column"}}>
-          <Button style={{height:'60px'}}><FiBox/>Repositories</Button>
-          <div className="classRepositories">
-            <span>Reposiories</span>
-          </div>
-        </div>
-
-        <div style={{display:"flex", flexDirection:"column"}}>
-          <Button style={{height:'60px'}}><FiList/>Starred</Button>
-          <div className="classStarred">
-            <span>Reposiories</span>
-          </div>
-        </div>
+          {userData && repositories && <Respositories userLoginName={userData.login}/> }
+          {userData && starred && <Starreds userLoginName={userData.login}/> }
       </List>
-
     </>
 )
 }

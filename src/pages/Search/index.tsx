@@ -26,7 +26,7 @@ const SearchUser: React.FC = () => {
 
   const [dataApiGitHub, setDataApiGitHub] = useState<IUser[]>([]);
   const [dataTotals, setDataTotals] = useState<ITotals[]>([]);
-  const [textoPesquisa , setTextoPesquisa] = useState('anael');
+  const [textoPesquisa , setTextoPesquisa] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 

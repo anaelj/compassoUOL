@@ -45,8 +45,8 @@ export async function getUserFollowers(username : String) {
     });
 };
 
-export function getUserStarred(username: String) {
-    return api({
+export async function getUserStarred(username: String) {
+    return await api({
       url: `/users/${username}/starred`,
       method: 'get',
     });

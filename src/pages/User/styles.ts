@@ -7,11 +7,9 @@ export const Container = styled.div`
   justify-content: left;
   background: #312e38;
   height: 220px;
-  padding: 0 16px;
   color: #312e38;
-  width: 100%;
+  width: auto;
   font-weight: 500;
-  margin-right: 20px;
   transition: background-color 0.2s;
 
 `;
@@ -22,7 +20,7 @@ export const Perfil = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 8%;
+  margin-left: 30px;
 
   img {
       margin-top: 20px;
@@ -63,35 +61,31 @@ export const PerfilDetail = styled.div`
 
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  gap: 20px;
+  background-color: #312e38;
+  padding: 20px;
+`;
+
 export const List = styled.div`
 
   display: flex;
   flex-direction: row;
   justify-content: left;
-  gap: 50px;
-  width: 96%;
-  height: 100%;
+  align-items: flex-start;
+
+  gap: 20px;
+  width: auto;
+  height: auto;
   margin: 16px;
   padding: 16px;
-  position: fixed;
 
-  background-color: #312e38;
-
-  .classRepositories {
-    width: 40%;
-    position: relative;
-    border: 2px solid #03b0ef;
-    margin-bottom: 10px;
-    /* margin-top: 60px; */
+  div {
+    width: 500px;
   }
-  .classStarred {
-    width: 40%;
-    position: relative;
-    border: 2px solid #03b0ef;
-    margin-bottom: 10px;
-    /* margin-top: 60px; */
-  }
-
 
 `;
 
