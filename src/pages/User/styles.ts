@@ -11,6 +11,7 @@ export const Container = styled.div`
   width: auto;
   font-weight: 500;
   transition: background-color 0.2s;
+  min-width: 400px;
 
 `;
 
@@ -20,7 +21,7 @@ export const Perfil = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 30px;
+  margin-left: 20px;
 
   img {
       margin-top: 20px;
@@ -64,10 +65,14 @@ export const PerfilDetail = styled.div`
 export const Buttons = styled.div`
   display: flex;
   flex-direction: row;
+  width: auto;
+  min-width: 400px;
   margin: 20px;
   gap: 20px;
   background-color: #312e38;
   padding: 20px;
+  margin-bottom : 0px;
+
 `;
 
 export const List = styled.div`
@@ -77,10 +82,9 @@ export const List = styled.div`
   justify-content: left;
   align-items: flex-start;
 
-  gap: 20px;
+  gap: 40px;
   width: auto;
   height: auto;
-  margin: 16px;
   padding: 16px;
 
   div {

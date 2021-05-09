@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { getUserStarred } from 'src/service/api';
+import { getUserStarred } from 'src/services/api';
 import { Container, ItemList } from './styles';
 import ReactLoading from 'react-loading';
 
@@ -31,8 +31,15 @@ useEffect(() => {
 
   return (
     <>
-      {loading && <div style={{display:"flex", width:'100%',justifyContent: "center"}}><ReactLoading type={'bubbles'} color={'#000000'} height={'5%'} width={'5%'}/></div> }
+      {
+        loading &&
+        <div style={{display:"flex", width:'100%',justifyContent: "center"}}>
+            <ReactLoading type={'bubbles'} color={'#000000'} height={'5%'} width={'5%'}/>
+          </div>
+      }
+      {!loading && starredData.length === 0 && <label style={{margin: '16px'}}>Data is empty!</label>}
       <Container>
+
         {starredData && starredData.map(item => { return (
           <ItemList key={item.name}>
             <img

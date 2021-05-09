@@ -5,7 +5,7 @@ import {ContainerMain} from './main';
 import Routes from './routes';
 
 const App: React.FC = () => (
-  <Router>
+<Router>
      <ContainerMain>
         <Routes />
      </ContainerMain>

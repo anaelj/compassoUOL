@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
-import { getUser } from 'src/service/api';
+import { getUser } from 'src/services/api';
 import { Container, Perfil, PerfilDetail, List, Buttons } from './styles';
 import { FiStar, FiBox, FiList } from 'react-icons/fi';
 import Button from 'src/components/Button';
@@ -30,17 +30,6 @@ const User: React.FC = () => {
   const [repositories, setRepositories] = useState(false);
   const [starred, setStarred] = useState(false);
 
-  // const jsonTeste = new Object({
-  //           avatar_url : 'avatarurl',
-  //           created_at: '2020-12-02',
-  //           followers: 'number',
-  //           following: 'number',
-  //           id: 'number',
-  //           html_url: 'string',
-  //           login: 'string',
-  //           name: 'string',
-  //           public_repos: 'number'
-  //        }) as IUser;
 
 
   useEffect(() => {
@@ -48,11 +37,6 @@ const User: React.FC = () => {
           setUserData(res.data);
       });
   }, [userLoginName]);
-
-
-  // useEffect(() => {
-  //     console.log(userData);
-  // }, [userData]);
 
   return (
     <>

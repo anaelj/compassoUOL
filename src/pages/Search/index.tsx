@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import  { getUsersPartial, getUser } from '../../service/api';
+import  { getUsersPartial, getUser } from '../../services/api';
 import Input from '../../components/Input/index';
 import Button from '../../components/Button';
-import { Container, Lista } from './styles';
+import { Container, Lista, ContainerLogin } from './styles';
 import logoImg from '../../assets/logotipo-do-github.svg';
 import { FiStar, FiBox } from 'react-icons/fi';
 import ReactLoading from 'react-loading';
 import { useHistory } from 'react-router-dom';
+import {signIn} from '../../Tools/auth';
+
+
+interface ISearchProps {
+  code : string;
+}
 
 interface ITotals {
   id: number;
@@ -22,21 +28,36 @@ interface IUser {
   followers_url: string;
 }
 
-const SearchUser: React.FC = () => {
+const SearchUser: React.FC<ISearchProps> = ({ children, code, ...rest }) => {
 
   const [dataApiGitHub, setDataApiGitHub] = useState<IUser[]>([]);
   const [dataTotals, setDataTotals] = useState<ITotals[]>([]);
-  const [textoPesquisa , setTextoPesquisa] = useState('');
+  const [textSearch , setTextSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const [logado, setLogado] = useState(false);
 
-     const getUsers = async () => {
+  useEffect(() => {
+    if (code !== '') {
+    signIn(code).then(res =>
+        {
+          setLogado(true)
+        }).catch((error)=> {
+          console.log(error)
+        });
+    }
+  }, [code])
+
+  const handleFindUsers = () => {
       setLoading(true);
-      getUsersPartial(textoPesquisa).then( res => {
+      getUsersPartial(textSearch).then( res => {
           setDataApiGitHub(res.data.items);
           setLoading(false);
       }
-      );
+      ).catch((error)=> {
+        setLoading(false);
+        console.log(error)
+      });
   }
 
   useEffect(() => {
@@ -46,24 +67,32 @@ const SearchUser: React.FC = () => {
               const newTotal = {id: item.id, followersCount: res.data.followers , repositoriesCount: res.data.public_repos};
               dataTotals.push(newTotal);
               setDataTotals([...dataTotals])
-        })
+            })
+
     )})
+
+
   }, [dataApiGitHub]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
    <>
-      <Container style={{marginTop: '16px'}}>
-        <img src={logoImg} alt="GitHub" style={{margin:10}} />
+      <ContainerLogin style={{marginTop: '16px'}}>
+        <a href="https://github.com/login/oauth/authorize?client_id=a785333efeff6818cd65">{logado ? 'Logged' : 'Login' }</a>
+      </ContainerLogin>
+      <Container >
+        <img src={logoImg} alt="GitHub" style={{margin:10}}  />
       </Container>
         <Container>
             <Input
               name="search"
               type="text"
-              value={textoPesquisa}
-              onChange={(e) => setTextoPesquisa(e.target.value) }
+              value={textSearch}
+              onKeyUp={(e)=> {e.keyCode === 13 && handleFindUsers() }}
+              onChange={(e) => setTextSearch(e.target.value) }
             />
-            <Button onClick={getUsers} loading={loading}>Search</Button>
+            <Button onClick={handleFindUsers} loading={loading}>Search</Button>
         </Container>
+
 
        { loading && <div style={{display:"flex", width:'100%',justifyContent: "center"}}><ReactLoading type={'bubbles'} color={'#000000'} height={'5%'} width={'5%'}/></div> }
 

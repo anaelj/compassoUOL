@@ -8,8 +8,6 @@ export const Container = styled.div`
   height: auto;
   width: auto;
   color: #fff;
-  margin-left: 16px;
-
 `;
 
 export const ItemList = styled.div`

@@ -14,6 +14,33 @@ export const Container = styled.div`
   font-weight: 500;
   margin-right: 20px;
   transition: background-color 0.2s;
+
+  img {
+    height: 50px;
+    width: 50px;
+  }
+
+`;
+
+export const ContainerLogin = styled.div `
+ display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  justify-content: flex-end;
+  background: #312e38;
+  color: #fff;
+  width: 100%;
+  font-weight: 500;
+  margin-right: 40px;
+  transition: background-color 0.2s;
+  padding: 10px;
+
+  a{
+    color: #fff;
+    padding-right: 30px;
+    font-size: 20px;
+  }
+
 `;
 
 export const Lista = styled.div`
@@ -50,7 +77,7 @@ export const Lista = styled.div`
 
     &:hover {
       background: ${shade(0.2, '#28262e')};
-      border-color: #03b0ef;
+      border-color: #f9ca24;
     }
    }
 
@@ -96,7 +123,7 @@ export const Lista = styled.div`
 
   .items-grid li {
     background: #232129;
-    border: 2px solid #03b0ef;
+    border: 2px solid #f9ca24;
     height: 180px;
     border-radius: 8px;
     padding: 32px 24px 16px;
@@ -108,12 +135,10 @@ export const Lista = styled.div`
     text-align: center;
     cursor: pointer;
 
+    span {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+    }
   }
-
-  .items-grid li span {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-  }
-
 `;
