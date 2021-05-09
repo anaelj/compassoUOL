@@ -55,7 +55,10 @@ export async function getAuth(pAuthCode: String) {
   })
   .get('/my-oauth'+ pAuthCode).then( res => {
     return res.data;
-  }).catch((error)=> {console.log(error)})
+  })
+  // .catch((error)=> {
+
+  //   console.log(error)})
 
 
 };

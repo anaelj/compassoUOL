@@ -6,7 +6,7 @@ const signIn = async (pCode: string) => {
 
   if (codeStorage !== pCode) {
 
-    getAuth( pCode ).then( res => {
+   return getAuth( pCode ).then( res => {
 
       const {token} = res;
 
@@ -16,13 +16,13 @@ const signIn = async (pCode: string) => {
 
       api.defaults.headers.authorization = `Bearer ${token}`;
 
+      return true
 
-      return true;
-
-    }).catch((error)=> {
-      console.log('Servidor de autendicação não iniciado, execute: node src/services/auth.js');
-      return false;
-    });
+    })
+    .catch((error)=> {
+       console.log('Servidor de autendicação não iniciado, execute: node src/services/auth.js');
+       return false;
+     });
   }
 
 

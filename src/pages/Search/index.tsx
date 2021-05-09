@@ -38,10 +38,13 @@ const SearchUser: React.FC<ISearchProps> = ({ children, code, ...rest }) => {
   const [logado, setLogado] = useState(false);
 
   useEffect(() => {
+
+  console.log(process.env.CLIENT_ID);
+
     if (code !== '') {
     signIn(code).then(res =>
         {
-          setLogado(true)
+          res && setLogado(res);
         }).catch((error)=> {
           console.log(error)
         });
@@ -77,7 +80,7 @@ const SearchUser: React.FC<ISearchProps> = ({ children, code, ...rest }) => {
   return (
    <>
       <ContainerLogin style={{marginTop: '16px'}}>
-        <a href="https://github.com/login/oauth/authorize?client_id=a785333efeff6818cd65">{logado ? 'Logged' : 'Login' }</a>
+        <a href="https://github.com/login/oauth/authorize?client_id=a785333efeff6818cd65">{logado === true ? 'Logged' : 'Login' }</a>
       </ContainerLogin>
       <Container >
         <img src={logoImg} alt="GitHub" style={{margin:10}}  />
