@@ -39,8 +39,6 @@ const SearchUser: React.FC<ISearchProps> = ({ children, code, ...rest }) => {
 
   useEffect(() => {
 
-  console.log(process.env.CLIENT_ID);
-
     if (code !== '') {
     signIn(code).then(res =>
         {

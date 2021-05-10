@@ -8,6 +8,7 @@ const api = axios.create({
 });
 
  export async function getUsersPartial(pUsername : String)  {
+
   return await api.get('/search/users',
     {
         params: {
