@@ -1,4 +1,4 @@
-# Teste técnico
+# Teste técnico Compasso
 
 Projeto criado para consulta à API github (users, repositories and starred)
 
@@ -10,7 +10,7 @@ Executa aplicação react
 
 ### `yarn token`
 
-Executa aplicação utilizada para baixar token github.
+Executa aplicação utilizada para baixar token github, necessário para rotina de autenticação.
 
 ### `yarn start-all`
 
