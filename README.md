@@ -1,23 +1,17 @@
-# Getting Started with Create React App
+# Teste técnico
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projeto criado para consulta à API github (users, repositories and starred)
 
-## Available Scripts
-
-In the project directory, you can run:
+## Scripts da aplicação
 
 ### `yarn start`
 
-Runs the app and local api in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
-Open [http://localhost:3001](http://localhost:3001) node app for authentication.
+Executa aplicação react
 
+### `yarn token`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Executa aplicação utilizada para baixar token github.
 
-## Learn More
+### `yarn start-all`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Executa aplicação token e aplicação react (funcionou no OSX mas não funcionou no windows)

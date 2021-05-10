@@ -44,9 +44,9 @@
     "yup": "^0.29.1"
   },
   "scripts": {
-    "start-default": "react-scripts start",
-    "start" : "yarn start-node & yarn start-default",
-    "start-node": "node src/services/auth.js",
+    "start": "react-scripts start",
+    "start-all" : "yarn token & yarn start",
+    "token": "node src/services/auth.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
